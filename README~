@@ -1,0 +1,101 @@
+=== prerequisites ===
+
+The code was build under Linux with Python 2.7.6 installed
+
+Besides that you will need:
+
+>> numpy, scipy, matplotlib, scikit-learn, scikit-image, cPickle, pybrain <<
+The dependencies are also given per script below.
+
+You can install all of the above in a Debian/Ubuntu system with:
+
+sudo apt-get install build-essential python-dev python-numpy python-scipy python-matplotlib python-setuptools python-sklearn python-skimage
+
+In order to run Rprop you will need pyBrain framework. Installation instructions here http://pybrain.org/docs/quickstart/installation.html
+
+Note that if the above fails (IT SHOULDN'T), one can install the following packages using the python pip installer
+sudo apt-get install python-pip
+pip install <package_name_same as above examples>
+
+
+1) Preprocess 
+
+First of all preprocess.py script must be run in order to ensure that dataset is processed and placed in the right place.
+If initial dataset does not exist, preprocess.py downloads it from the internet.
+
+Execution:
+>>> python preprocess.py
+
+
+2) MLP:
+
+Execution:
+>>> python run_MLP.py --help
+
+REMIND that: You can stop the execution at any time pressing CTRL-C, the object is saved and info is printed
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -t TRAIN, --train TRAIN
+                        train function to use Back-propagation or Resilient
+                        BackPropagation (B/R) ,default=B
+  -l LAYERS, --layers LAYERS
+                        number of layers (1 or 2 only implemented)
+  -n1 NODES1, --nodes1 NODES1
+                        number of 1st layer nodes, (keep it low or go
+                        vacation)
+  -n2 NODES2, --nodes2 NODES2
+                        number of 2nd layer nodes, (keep it low or go
+                        vacation)
+  -du DUSAGE, --dusage DUSAGE
+                        percentage of dataset used (default=10), enter 100 for
+                        full dataset
+
+if no arguments are supplied defaults values are used (Backprop - 1 layer - 50 nodes)
+
+BackProp makes use of mlp.py and mlp2.py 
+Rprop needs pyBrain libary installed.  http://pybrain.org/docs/quickstart/installation.html
+
+
+
+3) KNN:
+
+there is not a main function , parameters are defined on top of run_knn.py
+
+Execution:
+>>> python run_knn.py
+
+
+
+4) SVM:
+there is not a main function , parameters are set inside the script
+
+Execution:
+>>> python run_svm.py
+
+
+
+5) CLASSIFY SCRIPT
+
+python  classify.py --help
+usage: classify.py [-h] -n ANN -p PICTURE [-fc FOREGROUND]
+
+Classify a single number
+
+  -h, --help            show this help message and exit
+  -n ANN, --ann ANN     give filename where the trained ANN has been stored.
+                        Required
+  -p PICTURE, --picture PICTURE
+                        give file path containing picture. Required
+  -fc FOREGROUND, --foreground FOREGROUND
+                        give foreground color (B/W), default:B
+
+-n, -p : MANDATORY arguments
+
+example:
+
+>>>> python classify.py -n selected_instances/NN_100_0.save -p samples/7e.jpg
+
+Results not so good, not sure if the right instances are saved. The 300_100 not working (confusion didnt have time to fix it)
+
+
